@@ -14,15 +14,29 @@
 
 <div class="container-form">
     <form id="form" class="report-desenvolvedor">
-        <h2 for="diagnostico">Diagnóstico</h2>
-        <textarea
-                name="diagnostico"
-                id="diagnostico"
-                cols="30"
-                rows="5"
-                placeholder="Relatar de forma breve e técnica a causa do problema encontrado"
-                required
-        ></textarea>
+        <div class="corretiva">
+            <li class="corretiva">
+                É ticket de corretiva?
+            </li>
+            <div class="radio-corretiva">
+                <label for="corretiva-sim">Sim</label><br>
+                <input required type="radio" name="corretiva" id="corretiva-sim" value="sim"
+                       onclick="exibirContainer('container-diagnostico')">
+                <label for="corretiva-nao">Não</label><br>
+                <input type="radio" name="corretiva" id="corretiva-nao" value="nao"
+                       onclick="esconderContainer('container-diagnostico')">
+            </div>
+        </div>
+        <div id="container-diagnostico" class="container-diagnostico">
+            <h2 for="diagnostico">Diagnóstico</h2>
+            <textarea
+                    name="diagnostico"
+                    id="diagnostico"
+                    cols="30"
+                    rows="5"
+                    placeholder="Relatar de forma breve e técnica a causa do problema encontrado"
+            ></textarea>
+        </div>
         <ol>
             <div class="container-nivel1">
                 <li class="titulo-1" for="solucao">Solução</li>
@@ -148,10 +162,10 @@
                                 <div class="radio-quebra">
                                     <label for="risco-sim">Sim</label><br>
                                     <input required type="radio" name="quebra-banco" id="risco-sim" value="sim"
-                                           onclick="exibirAreaTexto(this)">
+                                           onclick="exibirAreaTextoDoInput(this)">
                                     <label for="risco-nao">Não</label><br>
                                     <input type="radio" name="quebra-banco" id="risco-nao" value="nao"
-                                           onclick="esconderAreaTexto(this)">
+                                           onclick="esconderAreaTextoDoInput(this)">
                                 </div>
                             </div>
 
@@ -168,10 +182,10 @@
                                 <div class="radio-quebra">
                                     <label for="quebra-api-sim">Sim</label><br>
                                     <input required type="radio" name="quebra-api" id="quebra-api-sim" value="sim"
-                                           onclick="exibirAreaTexto(this)">
+                                           onclick="exibirAreaTextoDoInput(this)">
                                     <label for="quebra-api-nao">Não</label><br>
                                     <input type="radio" name="quebra-api" id="quebra-api-nao" value="nao"
-                                           onclick="esconderAreaTexto(this)">
+                                           onclick="esconderAreaTextoDoInput(this)">
                                 </div>
                             </div>
 
@@ -193,7 +207,7 @@
                         id="testes"
                         cols="30"
                         rows="5"
-                        placeholder="Descreva resumidademente os teste automatizados criados. Caso não houver teste comente que não foi feito e se possível o por quê."
+                        placeholder="Descreva resumidademente os testes automatizados criados. Caso não houver teste comente que não foi feito e se possível o por quê."
                 ></textarea>
 
 

@@ -24,20 +24,42 @@ function obterTextAreaDoInput(input) {
 	return document.querySelector('textarea[name="' + input.name + '"]')
 }
 
-function exibirAreaTexto(element) {
-	const textArea = obterTextAreaDoInput(element)
-	textArea.style.height = "100px"; /* Ajusta a altura para exibir o conteúdo */
-	textArea.style.padding =' 5px';
-	textArea.required = true;
-
+function exibirAreaTextoDoInput(input) {
+	const textArea = obterTextAreaDoInput(input)
+	exibirAreaTexto(textArea)
 }
 
-function esconderAreaTexto(element) {
-	const textArea = obterTextAreaDoInput(element)
+function esconderAreaTextoDoInput(input) {
+	const textArea = obterTextAreaDoInput(input)
+	esconderAreaTexto(textArea)
+}
+
+
+function exibirAreaTexto(textArea) {
+	textArea.style.height = "100px"; /* Ajusta a altura para exibir o conteúdo */
+	textArea.style.padding = '5px';
+	textArea.required = true;
+}
+
+function esconderAreaTexto(textArea) {
 	textArea.value = "";
 	textArea.style.height = "0"; /* Ajusta a altura para 0 para ocultar o conteúdo */
-	textArea.style.padding =' 0px';
 	textArea.required = false;
+	textArea.style.padding = '0px';
+}
+
+function exibirContainer(id) {
+	const container = document.getElementById(id);
+	container.style.height = "180px"; /* Ajusta a altura para exibir o conteúdo */
+	const textArea = container.querySelector('textarea')
+	exibirAreaTexto(textArea)
+}
+
+function esconderContainer(id) {
+	const container = document.getElementById(id);
+	container.style.height = "0"; /* Ajusta a altura para 0 para ocultar o conteúdo */
+	const textArea = container.querySelector('textarea')
+	esconderAreaTexto(textArea)
 }
 
 
@@ -69,17 +91,19 @@ function createReportCard() {
 	const titleContainer = document.createElement("h2");
 	titleContainer.innerText = 'Reporter do Desenvolvedor'
 	const paragrafo = document.createElement("p");
-	paragrafo.style.color =  '#ffcc00';
+	paragrafo.style.color = '#ffcc00';
 	paragrafo.style.fontWeight = 'bold';
 	closeBtn.innerText = "Fechar";
 	closeBtn.classList.add("btnClose");
 
-	divContainer.append( closeBtn, paragrafo);
+	divContainer.append(closeBtn, paragrafo);
 	modal.appendChild(divContainer);
 
+	const diagnosticoCompleto = diagnostico.value ? `h1. Diagnóstico\n${diagnostico.value}` : ''
+
 	const comentarioGerado = `
-h1. Diagnóstico 
-${diagnostico.value}
+${diagnosticoCompleto}
+
 h1. 1-Solução
 ${solucao.value}
 
@@ -102,7 +126,7 @@ h1. 4-Modificações no objetivo do ticket e tomadas de decisão
 ${objetivoTicket.value}`
 	paragrafo.innerText = comentarioGerado
 
-	try{
+	try {
 		navigator.clipboard.writeText(comentarioGerado);
 	} catch (error) {
 		console.error('Ocorreu um erro ao copiar para o clipboard:', error);

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="src/style/style.css"/>
+    <title>Report do Desenvolvedor</title>
+</head>
+<body class="dark-theme">
+<header>
+    <h1>Report do Desenvolvedor</h1>
+</header>
+
+<div class="container-form">
+    <form id="form" class="report-desenvolvedor">
+        <h2 for="diagnostico">Diagnóstico</h2>
+        <textarea
+                name="diagnostico"
+                id="diagnostico"
+                cols="30"
+                rows="5"
+                placeholder="Relatar de forma breve e técnica a causa do problema encontrado"
+                required
+        ></textarea>
+        <ol>
+            <div class="container-nivel1">
+                <li class="titulo-1" for="solucao">Solução</li>
+                <textarea
+                        required
+                        name="solucao"
+                        id="solucao"
+                        rows="5"
+                        placeholder="Descrever a solução desenvolvida ressaltando pontos críticos com maior chance de falha e que merecem atenção durante o QA/Dev Check"
+                ></textarea>
+            </div>
+            <div class="container-riscos">
+                <li class="titulo-1" for="riscos">Riscos</li>
+                <ol>
+                    <div class="container-avaliacao-riscos">
+                        <table class="radio-table">
+                            <tr class="radio-row">
+                                <th class="radio-cell" rowspan="2">
+                                    <h1>Avaliação dos Riscos</h1>
+                                </th>
+                            </tr>
+                            <tr class="radio-row">
+                                <th class="radio-cell-text">Nenhum</th>
+                                <th class="radio-cell-text">Baixo</th>
+                                <th class="radio-cell-text">Médio</th>
+                                <th class="radio-cell-text">Alto</th>
+                            </tr>
+                            <tr class="radio-row">
+                                <td class="radio-cell">
+                                    <li class="titulo-2">
+                                        Qual é a probabilidade de causar problemas em outras
+                                        funcionalidades/serviços/sistemas
+                                    </li>
+                                </td>
+                                <td class="radio-cell">
+                                    <input
+                                            required
+                                            type="radio"
+                                            name="risco-1"
+                                            value="nenhum"
+                                            class="risco-1"
+                                    />
+                                </td>
+
+                                <td class="radio-cell">
+                                    <input
+                                            type="radio"
+                                            name="risco-1"
+                                            value="baixo"
+                                            class="risco-1"
+                                    />
+                                </td>
+                                <td class="radio-cell">
+                                    <input
+                                            type="radio"
+                                            name="risco-1"
+                                            value="medio"
+                                            class="risco-1"
+                                    />
+                                </td>
+                                <td class="radio-cell">
+                                    <input type="radio" name="risco-1" value="alto" class="risco-1"/>
+                                </td>
+                            </tr>
+                            <tr class="radio-row">
+                                <td class="radio-cell">
+                                    <li class="titulo-2">
+                                        No caso da probabilidade se concretizar quão impactante os
+                                        problemas seriam?
+                                    </li>
+                                </td>
+                                <td class="radio-cell">
+                                    <input
+                                            required
+                                            type="radio"
+                                            name="risco-2"
+                                            value="nenhum"
+                                            class="risco-2"
+                                    />
+                                </td>
+
+                                <td class="radio-cell">
+                                    <input
+                                            type="radio"
+                                            name="risco-2"
+                                            value="baixo"
+                                            class="risco-2"
+                                    />
+                                </td>
+                                <td class="radio-cell">
+                                    <input
+                                            type="radio"
+                                            name="risco-2"
+                                            value="medio"
+                                            class="risco-2"
+                                    />
+                                </td>
+                                <td class="radio-cell">
+                                    <input type="radio" name="risco-2" value="alto" class="risco-2"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div>
+                        <li class="titulo-2">Quais riscos estão envolvidos na mudança? Descreva-os abaixo</li>
+                        <textarea
+                                required
+                                name="risco-3"
+                                id="risco-3"
+                                cols="30"
+                                rows="5"
+                                placeholder="Digite seu texto aqui...."
+                        ></textarea>
+
+
+                    </div>
+                    <div class="container-nivel1">
+                        <div class="riscos-interno-compatibilidade">
+                            <div class="quebra">
+                                <li class="titulo-2">
+                                    Existe quebra de compatibilidade de banco de dados de algum serviço?
+                                </li>
+                                <div class="radio-quebra">
+                                    <label for="risco-sim">Sim</label><br>
+                                    <input required type="radio" name="quebra-banco" id="risco-sim" value="sim"
+                                           onclick="exibirAreaTexto(this)">
+                                    <label for="risco-nao">Não</label><br>
+                                    <input type="radio" name="quebra-banco" id="risco-nao" value="nao"
+                                           onclick="esconderAreaTexto(this)">
+                                </div>
+                            </div>
+
+                            <textarea required class="textarea-flex" id="risco" name="quebra-banco"
+                                      style="height: 0; overflow: hidden;" cols="30"
+                                      rows="5" placeholder="Descreva qual a quebra e em qual serivço..."></textarea>
+                        </div>
+
+                        <div class="riscos-interno-compatibilidade">
+                            <div class="quebra">
+                                <li class="titulo-2">
+                                    Existe quebra de compatibilidade entre serviços (API) ?
+                                </li>
+                                <div class="radio-quebra">
+                                    <label for="quebra-api-sim">Sim</label><br>
+                                    <input required type="radio" name="quebra-api" id="quebra-api-sim" value="sim"
+                                           onclick="exibirAreaTexto(this)">
+                                    <label for="quebra-api-nao">Não</label><br>
+                                    <input type="radio" name="quebra-api" id="quebra-api-nao" value="nao"
+                                           onclick="esconderAreaTexto(this)">
+                                </div>
+                            </div>
+
+                            <textarea required class="textarea-flex" id="quebra-api" name="quebra-api"
+                                      style="height: 0; overflow: hidden;"
+                                      cols="30"
+                                      rows="5"
+                                      placeholder="Descreva qual serviço e funcionalidade? Quais outros serviços precisam subir junto ou revertê-los juntos?..."></textarea>
+                        </div>
+                    </div>
+                </ol>
+            </div>
+
+            <div class="container-nivel1">
+                <li class="titulo-1" for="solucao">Testes unitários/integrados automatizados</li>
+                <textarea
+                        required
+                        name="testes"
+                        id="testes"
+                        cols="30"
+                        rows="5"
+                        placeholder="Descreva resumidademente os teste automatizados criados. Caso não houver teste comente que não foi feito e se possível o por quê."
+                ></textarea>
+
+
+            </div>
+            <div class="container-nivel1">
+                <li class="titulo-1" for="solucao">Modificações no objetivo do ticket e tomadas de decisão
+                </li
+                >
+                <textarea
+                        required
+                        name="objetivo-ticket"
+                        id="objetivo-ticket"
+                        cols="30"
+                        rows="5"
+                        placeholder="Descrever quais requisitos foram modificados ou não desenvolvidos durante a implementação e formalizar as tomadas de decisões"
+                ></textarea>
+            </div>
+
+        </ol>
+        <div class="button-container">
+            <button class="dark-theme, submit-button" type="submit" id="generate" form="form">Gerar</button>
+            <button class="dark-theme, cancel-button" type="button" id="clear" form="form">Limpar</button>
+        </div>
+    </form>
+</div>
+<div id="result" class="result"></div>
+
+<script src="src/js/index.js"></script>
+</body>
+</html>
